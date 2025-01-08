@@ -14,14 +14,21 @@ class GuestbookMessages {
     $this->db = $database;
   }
 
-  // Get all messages from the guestbook table
-  public function getMessages() {
-    $sql = $this->db->prepare("SELECT * FROM messages ORDER BY gb_id DESC");
+  // Get total number of entries
+  public function getTotalEntries() {
+    $sql = $this->db->query("SELECT COUNT(*) as count FROM messages");
+    $result = $sql->fetch_assoc();
+    return $result['count'];
+  }
+
+  // Get messages from the guestbook table with pagination
+  public function getMessages($offset, $limit) {
+    $sql = $this->db->prepare("SELECT * FROM messages ORDER BY gb_id DESC LIMIT ?, ?");
+    $sql->bind_param('ii', $offset, $limit);
     $sql->execute();
     $result = $sql->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
   }
-
 
   // Add a new message to the guestbook table
   public function addMessage($name, $datum, $message) {

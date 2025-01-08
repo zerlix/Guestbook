@@ -33,6 +33,19 @@
         </form>
     </div>
 
+    <!-- Top Pagination -->
+    <div class="container mt-3">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?php if ($i == $currentPage) echo 'active'; ?>">
+                        <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
+    </div>
+
     <!-- Ausgabe der Gästebuch Einträge -->
     <?php if (!empty($entries)): ?>
         <div class="container mt-3">
@@ -45,14 +58,27 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>Noch keine Einträge vorhanden.</p>
-        <?php endif; ?>
         </div>
+    <?php else: ?>
+        <div class="container mt-3">
+            <p>Noch keine Einträge vorhanden.</p>
+        </div>
+    <?php endif; ?>
 
+    <!-- Bottom Pagination -->
+    <div class="container mt-3">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?php if ($i == $currentPage) echo 'active'; ?>">
+                        <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
+    </div>
 
-
-        <script src="styles/js/bootstrap.min.js"></script>
+    <script src="styles/js/bootstrap.min.js"></script>
 
 </body>
 

@@ -14,6 +14,10 @@ class GuestbookController {
   }
 
   public function index() {
+
+    $entriesPerPage = 5; // Anzahl der Einträge pro Seite
+    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($currentPage - 1) * $entriesPerPage;
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -28,7 +32,10 @@ class GuestbookController {
       }
     }
 
-    $entries = $this->model->getMessages();
+    $totalEntries = $this->model->getTotalEntries();
+    $entries = $this->model->getMessages($offset, $entriesPerPage);
+    $totalPages = ceil($totalEntries / $entriesPerPage);
+    
     require '../views/guestbook/index.php';
   }
 }
