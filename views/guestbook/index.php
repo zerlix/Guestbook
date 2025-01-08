@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="de">
 
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <title>Gästebuch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Navbar content / Titel -->
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-        <!-- Navbar content -->
         <a class="navbar-brand" href="#">Gästebuch</a>
     </nav>
+
     <!-- Formular für neue Einträge -->
     <div class="container card p-3 mt-3">
         <form action="index.php" method="post">
@@ -26,15 +27,15 @@
             </div>
             <div class="mb-3">
                 <label for="datum" class="form-label">Datum:</label>
-                <input type="date" class="form-control" id="datum" value="<?php echo date('Y-m-d'); ?>"  name="datum" required>
+                <input type="date" class="form-control" id="datum" value="<?php echo date('Y-m-d'); ?>" name="datum" required>
             </div>
             <button type="submit" class="btn btn-primary">Eintragen</button>
         </form>
     </div>
-    
-    <div class="container mt-3">
+
     <!-- Ausgabe der Gästebuch Einträge -->
     <?php if (!empty($entries)): ?>
+        <div class="container mt-3">
             <?php foreach ($entries as $entry): ?>
                 <div class="card mb-3">
                     <div class="card-body">
@@ -44,14 +45,14 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-    <?php else: ?>
-        <p>Noch keine Einträge vorhanden.</p>
-    <?php endif; ?>
-    </div>
+        <?php else: ?>
+            <p>Noch keine Einträge vorhanden.</p>
+        <?php endif; ?>
+        </div>
 
 
 
-    <script src="styles/js/bootstrap.min.js"></script>
+        <script src="styles/js/bootstrap.min.js"></script>
 
 </body>
 
