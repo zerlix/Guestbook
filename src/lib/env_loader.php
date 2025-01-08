@@ -1,5 +1,10 @@
 <?php
-// filepath: /home/zerlix/www/html/Guestbook/src/lib/env_loader.php
+/**
+ * Loads environment variables from a .env file into the PHP environment.
+ *
+ * @param string $filePath The path to the .env file.
+ * @throws Exception If the .env file does not exist.
+ */
 
 function loadEnv($filePath) {
     if (!file_exists($filePath)) {
