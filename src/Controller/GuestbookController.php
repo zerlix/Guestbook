@@ -1,8 +1,7 @@
 <?php
+namespace Curiosum\Controller;
 
-require_once '../config/config.php';
-require_once '../models/guestbook.php';
-
+use Curiosum\Model\GuestbookModel;
 
 
 class GuestbookController {
@@ -10,7 +9,7 @@ class GuestbookController {
   private $model;
 
   public function __construct($db) {
-    $this->model = new GuestbookMessages($db);
+    $this->model = new GuestbookModel($db);
   }
 
   public function index() {
@@ -36,6 +35,6 @@ class GuestbookController {
     $entries = $this->model->getMessages($offset, $entriesPerPage);
     $totalPages = ceil($totalEntries / $entriesPerPage);
     
-    require '../views/guestbook/index.php';
+    require __DIR__ . '/../View/Guestbook/index.php';
   }
 }

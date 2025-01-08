@@ -1,8 +1,10 @@
 <?php
-require_once '../config/config.php';
-require_once '../controller/GuestbookController.php';
-require_once '../controller/AuthController.php';
 
+require_once '../config/config.php';
+require_once '../autoloader.php';
+
+use Curiosum\Controller\GuestbookController;
+use Curiosum\Controller\AuthController;
 
 
 // Einfache Routing-Logik

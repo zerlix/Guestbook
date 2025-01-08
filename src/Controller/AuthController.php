@@ -1,4 +1,5 @@
 <?php
+namespace Curiosum\Controller;
 
 require_once '../config/config.php';
 

@@ -1,4 +1,7 @@
 <?php
+namespace Curiosum\Model;
+use mysqli_sql_exception;
+
 /*
   * GuestbookMessages class
   * 
@@ -6,7 +9,7 @@
   * It contains methods to get all messages and add a new message.
   */
 
-  class GuestbookMessages {
+  class GuestbookModel {
   
     private $db;
   
