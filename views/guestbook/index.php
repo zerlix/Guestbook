@@ -14,7 +14,7 @@
         <a class="navbar-brand" href="#">Gästebuch</a>
     </nav>
 
-    <!-- Formular für neue Einträge -->
+    <!-- Form for Guestbook -->
     <div class="container card p-3 mt-3">
         <form action="index.php" method="post">
             <div class="mb-3">
@@ -65,6 +65,7 @@
         </div>
     <?php endif; ?>
 
+    
     <!-- Bottom Pagination -->
     <div class="container mt-3">
         <nav aria-label="Page navigation">
