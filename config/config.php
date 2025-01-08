@@ -12,17 +12,20 @@ if (defined('DEBUG') && DEBUG) {
   error_reporting(E_ALL);
 }
 
+$basePath = '/home/zerlix/www/html/Guestbook';
+
 // Database credentials
 $host = 'localhost';
 $username = 'guestbook';
 $password = 'demo1234';
 $database = 'guestbook';
 
+
 // Enable mysqli error reporting
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
   
-// Connect to the database
+// Connect to the database and Check configuration
 try {
   $db = new mysqli($host, $username, $password, $database);
   $db->set_charset('utf8mb4');

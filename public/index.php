@@ -1,12 +1,21 @@
 <?php
 const DEBUG = true;
 
-require_once '../config/db.php';
+require_once '../config/config.php';
 require_once '../controller/GuestbookController.php';
+require_once '../controller/AuthController.php';
 
-// Erstelle eine Instanz des GuestbookControllers und übergebe die Datenbankverbindung
-$controller = new GuestbookController($db);
+// Einfache Routing-Logik
+$requestUri = $_SERVER['REQUEST_URI'];
+$route = str_replace($basePath, '', $requestUri);
 
-// Rufe die index-Methode des Controllers auf, um die Gästebucheinträge anzuzeigen
-$controller->index();
+if (strpos($route, 'login') !== false) {
+    // AuthController für Login
+    $authController = new AuthController($db);
+    $authController->login();
+} else {
+    // GuestbookController für Standardseiten
+    $controller = new GuestbookController($db);
+    $controller->index();
+}
 
