@@ -22,12 +22,11 @@ class GuestbookMessages {
     return $result->fetch_all(MYSQLI_ASSOC);
   }
 
+
   // Add a new message to the guestbook table
   public function addMessage($name, $datum, $message) {
-    $sql = $this->db->prepare("INSERT INTO messages (name, datum, message) VALUES (:name, :datum, :message)");
-    $sql->bindParam(':name', $name);
-    $sql->bindParam(':datum', $datum);
-    $sql->bindParam(':message', $message);
+    $sql = $this->db->prepare("INSERT INTO messages (name, datum, message) VALUES (?, ?, ?)");
+    $sql->bind_param('sss', $name, $datum, $message);
     return $sql->execute();
   }
 
