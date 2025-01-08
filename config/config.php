@@ -1,42 +1,39 @@
 <?php
+// filepath: /home/zerlix/www/html/Guestbook/config/config.php
 
-// set DEBUG to true to enable error reporting
-if (!defined('DEBUG'))
+// Set DEBUG to true to enable error reporting
+if (!defined('DEBUG')) {
   define('DEBUG', true);
+}
 
 // Error reporting
-if (defined('DEBUG') && DEBUG) {
+if (DEBUG) {
   // Enable error reporting and display errors
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
+  // Enable mysqli error reporting
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+} else {
+  // Disable error reporting and hide errors
+  ini_set('display_errors', 0);
+  ini_set('display_startup_errors', 0);
+  error_reporting(0);
 }
 
-$basePath = '/home/zerlix/www/html/Guestbook';
+// loadEnv function is defined in env_loader.php
+require_once __DIR__ . '/../src/lib/env_loader.php';
+loadEnv(__DIR__ . '/../.env');
 
-// Database credentials
-$host = 'localhost';
-$username = 'guestbook';
-$password = 'demo1234';
-$database = 'guestbook';
+// Get database credentials from environment variables
+$host = getenv('DB_HOST');
+$username = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
+$database = getenv('DB_DATABASE');
 
+// Create a new mysqli connection
+$db = new mysqli($host, $username, $password, $database);
 
-// Enable mysqli error reporting
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-  
-// Connect to the database and Check configuration
-try {
-  $db = new mysqli($host, $username, $password, $database);
-  $db->set_charset('utf8mb4');
-
-  // Check connection
-  if ($db->connect_error) {
-    throw new Exception("Connection failed: " . $db->connect_error);
-  }
-  
-} catch (Exception $e) {
-  echo "An exception has been thrown: " . $e->getMessage();
-  exit;
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
 }
-

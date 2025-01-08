@@ -9,7 +9,7 @@ use Curiosum\Controller\AuthController;
 
 // Einfache Routing-Logik
 $requestUri = $_SERVER['REQUEST_URI'];
-$route = str_replace($basePath, '', $requestUri);
+$route = str_replace(__DIR__ , '', $requestUri);
 
 if (strpos($route, 'login') !== false) {
     // AuthController für Login
