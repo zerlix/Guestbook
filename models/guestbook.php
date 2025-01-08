@@ -16,14 +16,15 @@ class GuestbookMessages {
 
   // Get all messages from the guestbook table
   public function getMessages() {
-    $sql = $this->db->prepare("SELECT * FROM guestbook ORDER BY id DESC");
+    $sql = $this->db->prepare("SELECT * FROM messages ORDER BY gb_id DESC");
     $sql->execute();
-    return $sql->fetchAll(PDO::FETCH_ASSOC);
+    $result = $sql->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
   }
 
   // Add a new message to the guestbook table
   public function addMessage($name, $datum, $message) {
-    $sql = $this->db->prepare("INSERT INTO guestbook (name, datum, message) VALUES (:name, :datum, :message)");
+    $sql = $this->db->prepare("INSERT INTO messages (name, datum, message) VALUES (:name, :datum, :message)");
     $sql->bindParam(':name', $name);
     $sql->bindParam(':datum', $datum);
     $sql->bindParam(':message', $message);

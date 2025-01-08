@@ -1,20 +1,27 @@
 <?php
 
-// Database credentials
-$host = 'localhost';
-$username = 'udash';
-$password = 'udash';
-$database = 'udash';
-
 // set DEBUG to true to enable error reporting
 if (!defined('DEBUG'))
-  define('DEBUG', false);
+  define('DEBUG', true);
 
 // Error reporting
 if (defined('DEBUG') && DEBUG) {
-  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+  // Enable error reporting and display errors
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
 }
 
+// Database credentials
+$host = 'localhost';
+$username = 'guestbook';
+$password = 'demo1234';
+$database = 'guestbook';
+
+// Enable mysqli error reporting
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+  
 // Connect to the database
 try {
   $db = new mysqli($host, $username, $password, $database);
