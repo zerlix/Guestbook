@@ -1,9 +1,9 @@
 <?php
-const DEBUG = true;
-
 require_once '../config/config.php';
 require_once '../controller/GuestbookController.php';
 require_once '../controller/AuthController.php';
+
+
 
 // Einfache Routing-Logik
 $requestUri = $_SERVER['REQUEST_URI'];
